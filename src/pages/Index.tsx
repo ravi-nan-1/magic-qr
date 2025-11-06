@@ -2,18 +2,7 @@ import { useState } from "react";
 import { Header } from "@/components/qr/Header";
 import { QROptionsPanel } from "@/components/qr/QROptionsPanel";
 import { QRPreviewPanel } from "@/components/qr/QRPreviewPanel";
-
-export interface QRConfig {
-  type: "url" | "text" | "email" | "phone" | "sms" | "wifi" | "vcard" | "location";
-  content: string;
-  fgColor: string;
-  bgColor: string;
-  size: number;
-  errorCorrection: "L" | "M" | "Q" | "H";
-  logo: string | null;
-  logoSize: number;
-  margin: number;
-}
+import { QRConfig } from "@/types/qr";
 
 const Index = () => {
   const [qrConfig, setQRConfig] = useState<QRConfig>({

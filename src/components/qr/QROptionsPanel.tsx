@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { QRConfig } from "@/pages/Index";
+import { QRConfig } from "@/types/qr";
 import { ContentTab } from "./tabs/ContentTab";
 import { DesignTab } from "./tabs/DesignTab";
 import { LogoTab } from "./tabs/LogoTab";

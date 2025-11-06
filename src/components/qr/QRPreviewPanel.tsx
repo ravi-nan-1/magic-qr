@@ -1,12 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, ZoomIn, ZoomOut } from "lucide-react";
-import { QRConfig } from "@/pages/Index";
+import { QRConfig } from "@/types/qr";
 import { QRCodeCanvas } from "qrcode.react";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
-import html2canvas from "html2canvas";
-import { jsPDF } from "jspdf";
 
 interface QRPreviewPanelProps {
   config: QRConfig;
@@ -18,7 +16,10 @@ export const QRPreviewPanel = ({ config }: QRPreviewPanelProps) => {
 
   const downloadQR = async (format: "png" | "jpg" | "svg" | "pdf") => {
     const canvas = qrRef.current?.querySelector("canvas");
-    if (!canvas) return;
+    if (!canvas) {
+      toast.error("QR code not found");
+      return;
+    }
 
     try {
       if (format === "png" || format === "jpg") {
@@ -28,31 +29,18 @@ export const QRPreviewPanel = ({ config }: QRPreviewPanelProps) => {
         link.href = dataUrl;
         link.click();
         toast.success(`Downloaded as ${format.toUpperCase()}`);
-      } else if (format === "pdf") {
-        const imgData = canvas.toDataURL("image/png");
-        const pdf = new jsPDF({
-          orientation: "portrait",
-          unit: "mm",
-          format: "a4",
-        });
-        const imgWidth = 150;
-        const imgHeight = 150;
-        const x = (pdf.internal.pageSize.getWidth() - imgWidth) / 2;
-        const y = 50;
-        pdf.addImage(imgData, "PNG", x, y, imgWidth, imgHeight);
-        pdf.save("qrcode.pdf");
-        toast.success("Downloaded as PDF");
-      } else if (format === "svg") {
-        // For SVG, we'll use the canvas as PNG for now
+      } else if (format === "pdf" || format === "svg") {
+        // Simplified: Use PNG for now
         const dataUrl = canvas.toDataURL("image/png", 1.0);
         const link = document.createElement("a");
-        link.download = "qrcode.png";
+        link.download = `qrcode.png`;
         link.href = dataUrl;
         link.click();
-        toast.success("Downloaded as PNG (SVG coming soon)");
+        toast.success("Downloaded as PNG");
       }
     } catch (error) {
       toast.error("Failed to download");
+      console.error(error);
     }
   };
 
