@@ -11,9 +11,9 @@ export const Header = () => {
             </div>
             <div>
               <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                QR Code Generator Pro
+                Free QR Code Generator – Create Custom QR Codes Online
               </h1>
-              <p className="text-xs text-muted-foreground">Create beautiful QR codes in seconds</p>
+              <p className="text-xs text-muted-foreground">Our free QR code generator helps you create QR codes online instantly</p>
             </div>
           </div>
           
