@@ -72,7 +72,11 @@ export const QRPreviewPanel = ({ config }: QRPreviewPanelProps) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-center min-h-[400px] bg-muted/20 rounded-lg border-2 border-dashed border-border p-8">
+        <div 
+          className="flex items-center justify-center min-h-[400px] bg-muted/20 rounded-lg border-2 border-dashed border-border p-8"
+          role="img"
+          aria-label="free qr code generator online preview"
+        >
           <div
             ref={qrRef}
             style={{
@@ -137,7 +141,7 @@ export const QRPreviewPanel = ({ config }: QRPreviewPanelProps) => {
 
         <div className="p-4 bg-accent/5 border border-accent/20 rounded-lg">
           <p className="text-xs text-muted-foreground text-center">
-            ✨ Your QR code updates in real-time as you customize it
+            ✨ Your QR code updates in real-time as you customize it. <strong>QR code free download</strong> in multiple formats!
           </p>
         </div>
       </div>
